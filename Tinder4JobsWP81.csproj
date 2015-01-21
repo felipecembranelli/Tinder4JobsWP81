@@ -133,6 +133,26 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\active_404.png" />
+    <Content Include="Assets\Images\Background.png" />
+    <Content Include="Assets\Images\Chat.png" />
+    <Content Include="Assets\Images\Chats.png" />
+    <Content Include="Assets\Images\friends.png" />
+    <Content Include="Assets\Images\Heart.png" />
+    <Content Include="Assets\Images\i.png" />
+    <Content Include="Assets\Images\interests.png" />
+    <Content Include="Assets\Images\Like.png" />
+    <Content Include="Assets\Images\Map_Pin.png" />
+    <Content Include="Assets\Images\Menu.png" />
+    <Content Include="Assets\Images\Messages.png" />
+    <Content Include="Assets\Images\NearbyIcon.png" />
+    <Content Include="Assets\Images\Pass.png" />
+    <Content Include="Assets\Images\photos.png" />
+    <Content Include="Assets\Images\pressed_404.png" />
+    <Content Include="Assets\Images\SendIcon.png" />
+    <Content Include="Assets\Images\SmallTopLogo.jpg" />
+    <Content Include="Assets\Images\Spanner.png" />
+    <Content Include="Assets\Images\status.png" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\SmallLogo.scale-240.png" />
     <Content Include="Assets\SplashScreen.scale-240.png" />

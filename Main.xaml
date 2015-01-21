@@ -226,30 +226,30 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Border Grid.RowSpan="2"
-                Height="529"
+        <Border
+                Height="442"
                 Margin="20,20,20,0"
                 VerticalAlignment="Top"
                 Background="#FFF0F0F0"
                 BorderBrush="{StaticResource ImageBorderBrush}"
                 BorderThickness="2" />
-        <Border Height="529"
+        <Border Height="436"
                 Margin="16,16,16,-6"
                 VerticalAlignment="Top"
                 Background="#FFF0F0F0"
                 BorderBrush="{StaticResource ImageBorderBrush}"
                 BorderThickness="2" />
-        <Border Width="456"
-                Height="529"
+        <Border
+                Height="426"
                 Margin="12,12,12,0"
                 VerticalAlignment="Top"
-                Background="White"
+                Background="Black"
                 BorderBrush="{StaticResource ImageBorderBrush}"
                 BorderThickness="2"
                 CacheMode="BitmapCache"
                 ManipulationCompleted="OnManipulationCompleted"
                 ManipulationDelta="OnManipulationDelta"
-                RenderTransformOrigin="0.5,0.5">
+                RenderTransformOrigin="0.5,0.5" Tapped="Border_Tapped" ManipulationStarting="Border_ManipulationStarting" ManipulationInertiaStarting="Border_ManipulationInertiaStarting" ManipulationStarted="Border_ManipulationStarted" ManipulationMode="All">
             <Border.RenderTransform>
                 <CompositeTransform x:Name="transform" TranslateX="0" />
             </Border.RenderTransform>
@@ -263,11 +263,11 @@
                                             Mode=OneWay}"
                            Stretch="UniformToFill" />-->
 
-                    <TextBlock Margin="0"
+                    <TextBlock Margin="85,10,72,122"
                                    HorizontalAlignment="Stretch"
                                    VerticalAlignment="Stretch"
-                                   Foreground="#FF616161"
                                    TextWrapping="Wrap"
+                                   Foreground ="{ThemeResource PhoneAccentBrush}"
                                    Text="{Binding DescriptionSnippet,
                                                   Mode=OneWay}"/>
                     <!--<TextBlock Margin="0"
@@ -406,7 +406,7 @@
                     VerticalAlignment="Center"
                     Orientation="Horizontal">
             <Button x:Name="button"
-                    Width="125"
+                    Width="121"
                     Height="125"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
@@ -424,7 +424,7 @@
                            Text="X"
                            TextWrapping="Wrap" />
             </Button>
-            <Button Width="75"
+            <Button Width="93"
                     Height="75"
                     Margin="-6,0"
                     HorizontalAlignment="Center"
@@ -434,15 +434,13 @@
                     Foreground="#FFA4A4A4"
                     Style="{StaticResource InfoButtonStyle}"
                     >
-                <Image Width="70"
-                       Height="70"
-                       Margin="3,3,0,0"
+                <Image Width="99"
+                       Margin="0,10,0,35"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
                        Source="Assets/Images/i.png"
                        Stretch="Fill" />
             </Button>
-            <Button Width="125"
+            <Button Width="121"
                     Height="125"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
