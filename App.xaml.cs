@@ -31,7 +31,7 @@ namespace POCMigrationTinder4Jobs
 
         public static CustomPhoneApplicationFrame RootFrame { get; private set; }
 
-        public CustomPhoneApplicationFrame RootFrameInstance { get { return RootFrame; } }
+        //public CustomPhoneApplicationFrame RootFrameInstance { get { return RootFrame; } }
 
         public RightSideBarControl RightSideBar { get; set; }
 
@@ -44,10 +44,12 @@ namespace POCMigrationTinder4Jobs
         /// </summary>
         public App()
         {
+            //TopBarViewModel.ShowTopButtons = Visibility.Collapsed;
+
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
 
-            RootFrame = new CustomPhoneApplicationFrame();
+            //RootFrame = new CustomPhoneApplicationFrame();
             //RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             //RootFrame.SetValue(CustomPhoneApplicationFrame.StyleProperty, Application.Current.Resources["CustomFrame"]);
@@ -76,14 +78,14 @@ namespace POCMigrationTinder4Jobs
 #endif
 
             //Frame rootFrame = Window.Current.Content as Frame;
-            Frame rootFrame = Window.Current.Content as Frame;
+            CustomPhoneApplicationFrame rootFrame = Window.Current.Content as CustomPhoneApplicationFrame;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active.
             if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page.
-                rootFrame = new Frame();
+                rootFrame = new CustomPhoneApplicationFrame();
 
                 // Associate the frame with a SuspensionManager key.
                 SuspensionManager.RegisterFrame(rootFrame, "AppFrame");
@@ -191,7 +193,7 @@ namespace POCMigrationTinder4Jobs
 
         public void ShowTopBar()
         {
-            RootFrame.ViewModel.TopBarVisible = true;
+            //RootFrame.ViewModel.TopBarVisible = true;
         }
     }
 }

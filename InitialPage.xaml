@@ -176,9 +176,9 @@
                                   Height="46"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center">
-                                <Image Source="/Assets/Images/active_404.png" Stretch="None" />
+                                <Image Source="/Assets/Images/linkedin2.png" Stretch="None" />
                                 <Image x:Name="image"
-                                       Source="/Assets/Images/pressed_404.png"
+                                       Source="/Assets/Images/linkedin2.png"
                                        Stretch="None"
                                        Visibility="Collapsed" />
                             </Grid>
@@ -334,9 +334,9 @@
 
     <!--  LayoutRoot is the root grid where all page content is placed  -->
     <Grid x:Name="LayoutRoot">
-        <!--<Grid.Background>
-            <ImageBrush ImageSource="/Assets/Images/Background.png" Stretch="UniformToFill" />
-        </Grid.Background>-->
+        <Grid.Background>
+            <SolidColorBrush Color="White"></SolidColorBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -383,6 +383,7 @@
                        Text="Finding jobs..."
                        TextWrapping="Wrap" />
         </Grid>
+     
         <Border x:Name="LoginButtonBorder"
                 Grid.RowSpan="2"
                 Margin="12,50,12,0"
@@ -398,11 +399,11 @@
                                VerticalAlignment="Top"
                                FontFamily="{StaticResource PhoneFontFamilySemiBold}"
                                Foreground="#DE000000"
-                               Text="Login With Facebook"
+                               Text="Login With Linkedin"
                                TextAlignment="Center"
                                TextWrapping="Wrap" />
                     <TextBlock Margin="0,12,0,0"
-                               Text="You need to login using Facebook so that we can use your profile to show you the friends and interests you share in common with people nearby."
+                               Text="You need to login using Linked so that we can use your profile to show you the jobs suggestions."
                                TextWrapping="Wrap" />
                     <TextBlock Margin="0,12,0,0"
                                FontFamily="{StaticResource PhoneFontFamilySemiBold}"

@@ -23,6 +23,8 @@ using TinderApp.Library.Linkedin;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using Windows.UI.Popups;
+using Windows.Storage;
+using System.Threading.Tasks;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
@@ -34,6 +36,11 @@ namespace POCMigrationTinder4Jobs
     /// </summary>
     public sealed partial class InitialPage : Page
     {
+
+        public static string DB_PATH = Path.Combine(Path.Combine(Windows.ApplicationModel.Package.Current.InstalledLocation.Path, DB_FILE_NAME_TEMPLATE));//DataBase Name
+        private const string DB_FILE_NAME_TEMPLATE = "Tinder4Jobs.sqlite";
+        private const string DB_FILE_NAME_COPY = "Tinder4Jobs_copy.sqlite";
+
         private TinderApp.Library.Linkedin.LinkedinUser _LoggedUser;
 
         string _consumerKey = "772jmojzy2vnra";
@@ -64,6 +71,9 @@ namespace POCMigrationTinder4Jobs
         public InitialPage()
         {
             this.InitializeComponent();
+
+            InitDatabase();
+
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -695,5 +705,39 @@ namespace POCMigrationTinder4Jobs
                 }
             }
         }
+
+        #region "Database methods"
+
+        private async void InitDatabase()
+        {
+            if (FileExists(DB_FILE_NAME_COPY).Result)
+            {
+                // file exists;
+                DB_PATH = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path,
+                 DB_FILE_NAME_COPY);
+            }
+            else
+            {
+                // file does not exist
+                StorageFile databaseFile = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFileAsync(DB_FILE_NAME_TEMPLATE);
+                await databaseFile.CopyAsync(ApplicationData.Current.LocalFolder, DB_FILE_NAME_COPY);
+                DB_PATH = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, DB_FILE_NAME_COPY);
+            }
+        }
+
+        private async Task<bool> FileExists(string fileName)
+        {
+            try
+            {
+                var store = await Windows.Storage.ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
+
+                return true;
+            }
+            catch
+            {
+            }
+            return false;
+        }
+        #endregion
     }
 }

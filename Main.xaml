@@ -165,15 +165,16 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Name="LikeAnimation">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="image" Duration="0:0:2" AutoReverse="True" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <!--<DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
                     </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
+                </DiscreteObjectKeyFrame>-->
             </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1">
+            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Duration="0:0:2"  Storyboard.TargetProperty="(UIElement.Opacity)">
+                -->
+            <!--<EasingDoubleKeyFrame KeyTime="0" Value="1">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <CubicEase EasingMode="EaseOut" />
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -182,19 +183,21 @@
                     <EasingDoubleKeyFrame.EasingFunction>
                         <CubicEase EasingMode="EaseOut" />
                     </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
+                </EasingDoubleKeyFrame>-->
+            <!--
+            </DoubleAnimationUsingKeyFrames>-->
         </Storyboard>
         <Storyboard x:Name="PassAnimation">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="image1" Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="image1" Duration="0:0:2" AutoReverse="True" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <!--<DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
                         <Visibility>Visible</Visibility>
                     </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
+                </DiscreteObjectKeyFrame>-->
             </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image1" Storyboard.TargetProperty="(UIElement.Opacity)">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1">
+            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetName="image1" Duration="0:0:2" Storyboard.TargetProperty="(UIElement.Opacity)">
+                -->
+            <!--<EasingDoubleKeyFrame KeyTime="0" Value="1">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <CubicEase EasingMode="EaseOut" />
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -203,9 +206,18 @@
                     <EasingDoubleKeyFrame.EasingFunction>
                         <CubicEase EasingMode="EaseOut" />
                     </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
+                </EasingDoubleKeyFrame>-->
+            <!--
+            </DoubleAnimationUsingKeyFrames>-->
         </Storyboard>
+        <Style x:Key="TextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF616161" />
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
         <SolidColorBrush x:Key="ImageBorderBrush" Color="#FFA4A4A4" />
     </Page.Resources>
 
@@ -224,17 +236,19 @@
     <Grid x:Name="LayoutRoot" Background="#FFF6F6F2">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
         <Border
-                Height="442"
+                Height="432"
                 Margin="20,20,20,0"
                 VerticalAlignment="Top"
                 Background="#FFF0F0F0"
                 BorderBrush="{StaticResource ImageBorderBrush}"
                 BorderThickness="2" />
-        <Border Height="436"
-                Margin="16,16,16,-6"
+        <Border Height="430"
+                Margin="16,16,16,0"
                 VerticalAlignment="Top"
                 Background="#FFF0F0F0"
                 BorderBrush="{StaticResource ImageBorderBrush}"
@@ -243,97 +257,128 @@
                 Height="426"
                 Margin="12,12,12,0"
                 VerticalAlignment="Top"
-                Background="Black"
+                Background="White"
                 BorderBrush="{StaticResource ImageBorderBrush}"
                 BorderThickness="2"
                 CacheMode="BitmapCache"
                 ManipulationCompleted="OnManipulationCompleted"
                 ManipulationDelta="OnManipulationDelta"
-                RenderTransformOrigin="0.5,0.5" Tapped="Border_Tapped" ManipulationStarting="Border_ManipulationStarting" ManipulationInertiaStarting="Border_ManipulationInertiaStarting" ManipulationStarted="Border_ManipulationStarted" ManipulationMode="All">
+                RenderTransformOrigin="0.5,0.5" 
+            Tapped="Border_Tapped" 
+            ManipulationStarting="Border_ManipulationStarting" 
+            ManipulationInertiaStarting="Border_ManipulationInertiaStarting" 
+            ManipulationStarted="Border_ManipulationStarted"
+            ManipulationMode="System">
             <Border.RenderTransform>
                 <CompositeTransform x:Name="transform" TranslateX="0" />
             </Border.RenderTransform>
             <StackPanel Orientation="Vertical">
-                <Grid Height="460">
-                    <!--<Image Width="460"
-                           Height="460"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top"
-                           Source="{Binding ProfilePhoto,
-                                            Mode=OneWay}"
-                           Stretch="UniformToFill" />-->
-
-                    <TextBlock Margin="85,10,72,122"
-                                   HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Stretch"
-                                   TextWrapping="Wrap"
-                                   Foreground ="{ThemeResource PhoneAccentBrush}"
-                                   Text="{Binding DescriptionSnippet,
-                                                  Mode=OneWay}"/>
-                    <!--<TextBlock Margin="0"
-                                   HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Stretch"
-                                   Foreground="#FF616161"
-                                   TextWrapping="Wrap"
-                                   Style="{StaticResource PhoneTextAccentStyle}"
-                                   Text="{Binding DescriptionSnippet,
-                                                  Mode=OneWay}"/>-->
-                    <Image x:Name="image"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top"
-                           Source="/Assets/Images/Like.png"
-                           Stretch="None"
-                           Visibility="Collapsed" />
-                    <Image x:Name="image1"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Top"
-                           Source="/Assets/Images/Pass.png"
-                           Stretch="None"
-                           Visibility="Collapsed" />
-                </Grid>
-                <Grid Height="65">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <StackPanel Margin="12,0,0,0"
-                                VerticalAlignment="Center"
-                                Orientation="Horizontal">
-                        <TextBlock Margin="0"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Bottom"
+                    <StackPanel Margin="12,10,10,10"
+                                VerticalAlignment="Stretch"
+                                Orientation="Vertical">
+                        <Border x:Name="ClientArea" Background="White">
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid Height="65"
+                                      VerticalAlignment="Top"
+                                      Background="#7FFFFFFF"
+                                      Visibility="{Binding TopBarVisibility}">
+                                    <Button Width="65"
+                                            Height="65"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            BorderBrush="{StaticResource PhoneAccentBrush}"
+                                            BorderThickness="0,0,1,0"
+                                            Foreground="{StaticResource PhoneAccentBrush}"
+                                            Padding="0"
+                                            Style="{StaticResource ImageButton}">
+                                        <Rectangle Width="65"
+                                                   Height="65"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Top"
+                                                   Stroke="Black">
+                                        </Rectangle>
+                                    </Button>
+                                    <Image Margin="105,0"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Top"
+                                           Source="Assets/Images/SmallTopLogo.jpg"
+                                           Stretch="None" Height="55" />
+                                    <Button Width="65"
+                                            Height="65"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Foreground="{StaticResource PhoneAccentBrush}"
+                                            Padding="0"
+                                            Style="{StaticResource ImageButton}"
+                                            Name="JobList" Click="JobList_Click"
+                                            >
+
+                                        <Rectangle Width="86"
+                                                   Height="65"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Top"
+                                                   Stroke="Black">
+
+                                        </Rectangle>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </Border>
+
+                        <Border BorderBrush="Gray" BorderThickness="1" Margin="10,10,10,10">
+                            <TextBlock HorizontalAlignment="Stretch"
                                    Foreground="#FF616161"
-                                   Text="{Binding Id,
-                                                  Mode=OneWay}"
-                                     TextWrapping="Wrap" />
-                        <TextBlock Margin="0,0,0,-0.399"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Bottom"
-                                   Foreground="#FF616161"
-                                   Text=", "
-                                   TextWrapping="Wrap" />
-                        <TextBlock Margin="0"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Bottom"
-                                   Foreground="#FF616161"
+                                   Height="50"
+                                       FontSize="15"
+                                       Padding="10"
                                    Text="{Binding Name,
                                                   Mode=OneWay}"
                                    TextWrapping="Wrap" />
-                        <TextBlock Margin="0,0,0,-0.399"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Bottom"
+                        </Border>
+                        <Border BorderBrush="Gray" BorderThickness="1" Margin="10,10,10,10" >
+                            <TextBlock Height="45"
+                                   HorizontalAlignment="Stretch"
                                    Foreground="#FF616161"
-                                   Text=", "
-                                   TextWrapping="Wrap" />
-                        <TextBlock Margin="0,0,0,-0.399"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Bottom"
+                                       FontSize="15"
+                                       Padding="10"
+                                   Text="{Binding Id,
+                                                  Mode=OneWay}"
+                                     TextWrapping="Wrap" Margin="0.167,0,0,0" />
+                        </Border>
+                        <Border BorderBrush="Gray" BorderThickness="1" Margin="10,10,10,10">
+                            <TextBlock Height="50"
+                                   HorizontalAlignment="Stretch"
                                    Foreground="#FF616161"
+                                       FontSize="15"
+                                       Padding="10"
                                    Text="{Binding LocationDescription,
                                                   Mode=OneWay}"
                                    TextWrapping="Wrap" />
+                        </Border>
+                        <Border BorderBrush="Gray" BorderThickness="1" Margin="10,10,10,10">
+                            <TextBlock Height="109"
+                                   TextWrapping="Wrap"
+                                       Padding="10"
+                                   HorizontalAlignment="Stretch"
+                                   Foreground="#FF616161"
+                                       FontSize="15"
+                                   Text="{Binding DescriptionSnippet,
+                                                  Mode=OneWay}"
+                                       ScrollViewer.VerticalScrollMode="Auto" Margin="0.167,0,0,0"
+                                       />
+                        </Border>
+
                     </StackPanel>
                     <!--<StackPanel Grid.Column="1"
                                 Margin="0,0,12,0"
@@ -353,7 +398,7 @@
                                                   Mode=OneWay}"
                                    TextWrapping="Wrap" />
                     </StackPanel>-->
-                    <StackPanel Grid.Column="2"
+                    <!--<StackPanel Grid.Column="2"
                                 Margin="0,0,12,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
@@ -361,9 +406,11 @@
                                    Height="36"
                                    VerticalAlignment="Top"
                                    Fill="{Binding LikesBrush}">
-                            <!--<Rectangle.Opacity>
+                            -->
+                    <!--<Rectangle.Opacity>
                                 <ImageBrush ImageSource="/Assets/Images/interests.png" Stretch="Uniform" />
                             </Rectangle.Opacity>-->
+                    <!--
                         </Rectangle>
                         <TextBlock HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
@@ -371,7 +418,7 @@
                                    Text="{Binding JobCount,
                                                   Mode=OneWay}"
                                    TextWrapping="Wrap" />
-                    </StackPanel>
+                    </StackPanel>-->
                     <!--<StackPanel Grid.Column="3"
                                 Grid.ColumnSpan="2"
                                 Margin="0,0,12,0"
@@ -392,6 +439,42 @@
                                    TextWrapping="Wrap" />
                     </StackPanel>-->
                 </Grid>
+                <!--<Grid Height="460">-->
+                <!--<Image Width="460"
+                           Height="460"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Source="{Binding ProfilePhoto,
+                                            Mode=OneWay}"
+                           Stretch="UniformToFill" />-->
+
+                <!--<TextBlock Margin="10,10,10,211"
+                                   TextWrapping="Wrap"
+                                   Foreground ="{ThemeResource PhoneAccentBrush}"
+                                   Text="{Binding DescriptionSnippet,
+                                                  Mode=OneWay}"/>-->
+                <!--<TextBlock Margin="0"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Foreground="#FF616161"
+                                   TextWrapping="Wrap"
+                                   Style="{StaticResource PhoneTextAccentStyle}"
+                                   Text="{Binding DescriptionSnippet,
+                                                  Mode=OneWay}"/>-->
+                <Image x:Name="image"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Source="/Assets/Images/Like.png"
+                           Stretch="None"
+                           Visibility="Collapsed" />
+                <Image x:Name="image1"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Top"
+                           Source="/Assets/Images/Pass.png"
+                           Stretch="None"
+                           Visibility="Collapsed" />
+                <!--</Grid>-->
+
             </StackPanel>
         </Border>
         <Image Grid.RowSpan="2"
@@ -400,11 +483,10 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top" />
         <StackPanel Grid.Row="1"
-                    Grid.RowSpan="2"
-                    Margin="0"
+                    Margin="33,26.333,31,27"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Orientation="Horizontal">
+                    Orientation="Horizontal" Width="336">
             <Button x:Name="button"
                     Width="121"
                     Height="125"
@@ -414,8 +496,8 @@
                     Canvas.ZIndex="100"
                     Command="{Binding RejectUserCommand,
                                       Mode=OneWay}"
-                    Style="{StaticResource RoundButtonStyle}">
-                <TextBlock Margin="45,17,0,-2"
+                    Style="{StaticResource RoundButtonStyle}" Click="button_Click">
+                <TextBlock Margin="39,17,0,-2"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -424,8 +506,8 @@
                            Text="X"
                            TextWrapping="Wrap" />
             </Button>
-            <Button Width="93"
-                    Height="75"
+            <Button Width="104"
+                    Height="86"
                     Margin="-6,0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -434,13 +516,13 @@
                     Foreground="#FFA4A4A4"
                     Style="{StaticResource InfoButtonStyle}"
                     >
-                <Image Width="99"
-                       Margin="0,10,0,35"
+                <Image Width="109"
+                       Margin="0,10,-9,24"
                        HorizontalAlignment="Left"
                        Source="Assets/Images/i.png"
                        Stretch="Fill" />
             </Button>
-            <Button Width="121"
+            <Button Width="116"
                     Height="125"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
@@ -448,10 +530,10 @@
                     Canvas.ZIndex="100"
                     Command="{Binding LikeUserCommand,
                                       Mode=OneWay}"
-                    Style="{StaticResource LikeButtonStyle}">
-                <Image Width="75"
+                    Style="{StaticResource LikeButtonStyle}" Click="Button_Click_1">
+                <Image Width="96"
                        Height="75"
-                       Margin="13,14,-13,-14"
+                       Margin="10,26,-6,-1"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Source="Assets/Images/Heart.png"
@@ -486,7 +568,7 @@
                                Text=" have liked each other!"
                                TextWrapping="Wrap" />
                 </StackPanel>
-                <Button x:Name="sendMessageBtn"
+                <!--<Button x:Name="sendMessageBtn"
                         Margin="0,100,0,0"
                         BorderBrush="#DEFFFFFF"
                         Click="sendMessageBtn_Click"
@@ -500,7 +582,7 @@
                         BorderBrush="#DEFFFFFF"
                         Click="keepPlayingButton_Click"
                         Content="Keep Playing"
-                        Foreground="#DEFFFFFF" />
+                        Foreground="#DEFFFFFF" />-->
             </StackPanel>
         </Border>
     </Grid>

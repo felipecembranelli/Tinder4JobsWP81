@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Input;
+using TinderApp.DbHelper;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
@@ -69,8 +70,16 @@ namespace POCMigrationTinder4Jobs
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data.
-            var item = await SampleDataSource.GetItemAsync((string)e.NavigationParameter);
+            //var item = await SampleDataSource.GetItemAsync((string)e.NavigationParameter);
+            //this.DefaultViewModel["Item"] = item;
+
+            DatabaseLinkedinJobHelperClass db = new DatabaseLinkedinJobHelperClass();
+
+            var item = db.ReadJob((string)e.NavigationParameter);
+
             this.DefaultViewModel["Item"] = item;
+
+
         }
 
         /// <summary>

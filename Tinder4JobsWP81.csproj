@@ -133,6 +133,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\..\..\..\..\..\..\temp\facebook.png" />
     <Content Include="Assets\Images\active_404.png" />
     <Content Include="Assets\Images\Background.png" />
     <Content Include="Assets\Images\Chat.png" />
@@ -142,13 +143,13 @@
     <Content Include="Assets\Images\i.png" />
     <Content Include="Assets\Images\interests.png" />
     <Content Include="Assets\Images\Like.png" />
+    <Content Include="Assets\Images\linkedin2.png" />
     <Content Include="Assets\Images\Map_Pin.png" />
     <Content Include="Assets\Images\Menu.png" />
     <Content Include="Assets\Images\Messages.png" />
     <Content Include="Assets\Images\NearbyIcon.png" />
     <Content Include="Assets\Images\Pass.png" />
     <Content Include="Assets\Images\photos.png" />
-    <Content Include="Assets\Images\pressed_404.png" />
     <Content Include="Assets\Images\SendIcon.png" />
     <Content Include="Assets\Images\SmallTopLogo.jpg" />
     <Content Include="Assets\Images\Spanner.png" />
@@ -186,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Tinder4Jobs.sqlite" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

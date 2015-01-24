@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TinderApp.DbHelper;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -25,8 +26,8 @@ namespace POCMigrationTinder4Jobs
 {
     public sealed partial class PivotPage : Page
     {
-        private const string FirstGroupName = "FirstGroup";
-        private const string SecondGroupName = "SecondGroup";
+        private const string FirstGroupName = "Like";
+        private const string SecondGroupName = "Pass";
 
         private readonly NavigationHelper navigationHelper;
         private readonly ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -74,8 +75,15 @@ namespace POCMigrationTinder4Jobs
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var sampleDataGroup = await SampleDataSource.GetGroupAsync("Group-1");
+            //var sampleDataGroup = await SampleDataSource.GetGroupAsync("Group-1");
+
+            DatabaseLinkedinJobHelperClass db = new DatabaseLinkedinJobHelperClass();
+
+            var sampleDataGroup = db.ReadAllJobsByStatus("Approved");
+
             this.DefaultViewModel[FirstGroupName] = sampleDataGroup;
+
+            this.ListViewApproved.ItemsSource = sampleDataGroup;
         }
 
         /// <summary>
@@ -96,23 +104,23 @@ namespace POCMigrationTinder4Jobs
         /// </summary>
         private void AddAppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            string groupName = this.pivot.SelectedIndex == 0 ? FirstGroupName : SecondGroupName;
-            var group = this.DefaultViewModel[groupName] as SampleDataGroup;
-            var nextItemId = group.Items.Count + 1;
-            var newItem = new SampleDataItem(
-                string.Format(CultureInfo.InvariantCulture, "Group-{0}-Item-{1}", this.pivot.SelectedIndex + 1, nextItemId),
-                string.Format(CultureInfo.CurrentCulture, this.resourceLoader.GetString("NewItemTitle"), nextItemId),
-                string.Empty,
-                string.Empty,
-                this.resourceLoader.GetString("NewItemDescription"),
-                string.Empty);
+            //string groupName = this.pivot.SelectedIndex == 0 ? FirstGroupName : SecondGroupName;
+            //var group = this.DefaultViewModel[groupName] as SampleDataGroup;
+            //var nextItemId = group.Items.Count + 1;
+            //var newItem = new SampleDataItem(
+            //    string.Format(CultureInfo.InvariantCulture, "Group-{0}-Item-{1}", this.pivot.SelectedIndex + 1, nextItemId),
+            //    string.Format(CultureInfo.CurrentCulture, this.resourceLoader.GetString("NewItemTitle"), nextItemId),
+            //    string.Empty,
+            //    string.Empty,
+            //    this.resourceLoader.GetString("NewItemDescription"),
+            //    string.Empty);
 
-            group.Items.Add(newItem);
+            //group.Items.Add(newItem);
 
-            // Scroll the new item into view.
-            var container = this.pivot.ContainerFromIndex(this.pivot.SelectedIndex) as ContentControl;
-            var listView = container.ContentTemplateRoot as ListView;
-            listView.ScrollIntoView(newItem, ScrollIntoViewAlignment.Leading);
+            //// Scroll the new item into view.
+            //var container = this.pivot.ContainerFromIndex(this.pivot.SelectedIndex) as ContentControl;
+            //var listView = container.ContentTemplateRoot as ListView;
+            //listView.ScrollIntoView(newItem, ScrollIntoViewAlignment.Leading);
         }
 
         /// <summary>
@@ -122,7 +130,8 @@ namespace POCMigrationTinder4Jobs
         {
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
+            var itemId = ((Tb_LinkedinJob)e.ClickedItem).JobId;
+
             if (!Frame.Navigate(typeof(ItemPage), itemId))
             {
                 throw new Exception(this.resourceLoader.GetString("NavigationFailedExceptionMessage"));
@@ -134,8 +143,16 @@ namespace POCMigrationTinder4Jobs
         /// </summary>
         private async void SecondPivot_Loaded(object sender, RoutedEventArgs e)
         {
-            var sampleDataGroup = await SampleDataSource.GetGroupAsync("Group-2");
+            //var sampleDataGroup = await SampleDataSource.GetGroupAsync("Group-2");
+
+            DatabaseLinkedinJobHelperClass db = new DatabaseLinkedinJobHelperClass();
+
+
+            var sampleDataGroup = db.ReadAllJobsByStatus("Not approved");
+
             this.DefaultViewModel[SecondGroupName] = sampleDataGroup;
+
+            this.ListViewPass.ItemsSource = sampleDataGroup;
         }
 
         #region NavigationHelper registration

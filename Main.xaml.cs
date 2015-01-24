@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using TinderApp.Views;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -24,8 +26,12 @@ namespace POCMigrationTinder4Jobs
     /// </summary>
     public sealed partial class Main : Page
     {
+
+    
+
+
         private JobReccommendationsViewModel _viewModel;
-        private TinderApp.Library.Linkedin.LinkedinUser _LoggedUser;
+        //private TinderApp.Library.Linkedin.LinkedinUser _LoggedUser;
 
         public Main()
         {
@@ -33,6 +39,8 @@ namespace POCMigrationTinder4Jobs
 
             _viewModel = new JobReccommendationsViewModel();
             DataContext = _viewModel;
+
+          
 
         }
 
@@ -45,7 +53,7 @@ namespace POCMigrationTinder4Jobs
         {
             (App.Current as App).ShowTopBar();
 
-            _viewModel.OnMatch += _viewModel_OnMatch;
+            //_viewModel.OnMatch += _viewModel_OnMatch;
             _viewModel.OnAnimation += _viewModel_OnAnimation;
 
             base.OnNavigatedTo(e);
@@ -56,24 +64,24 @@ namespace POCMigrationTinder4Jobs
         {
             //CoreWindow.GetForCurrentThread().Dispatcher.BeginInvoke(() =>
             //{
-                switch (e.AnimationName)
-                {
-                    case "Like":
-                        LikeAnimation.Begin();
-                        break;
+            switch (e.AnimationName)
+            {
+                case "Like":
+                    LikeAnimation.Begin();
+                    break;
 
-                    case "Pass":
-                        PassAnimation.Begin();
-                        break;
-                }
+                case "Pass":
+                    PassAnimation.Begin();
+                    break;
+            }
             //});
         }
 
-        private void _viewModel_OnMatch(object sender, EventArgs e)
-        {
-            matchBorder.Visibility = Visibility.Visible;
-            ShowMatch.Begin();
-        }
+        //private void _viewModel_OnMatch(object sender, EventArgs e)
+        //{
+        //    matchBorder.Visibility = Visibility.Visible;
+        //    ShowMatch.Begin();
+        //}
 
         //private void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         //{
@@ -85,23 +93,23 @@ namespace POCMigrationTinder4Jobs
 
         //}
 
-        private void keepPlayingButton_Click(object sender, RoutedEventArgs e)
-        {
-            matchBorder.Visibility = Visibility.Collapsed;
-            _viewModel.NextJobSuggestion();
+        //private void keepPlayingButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    matchBorder.Visibility = Visibility.Collapsed;
+        //    _viewModel.NextJobSuggestion();
 
-        }
+        //}
 
-        private void sendMessageBtn_Click(object sender, RoutedEventArgs e)
-        {
-            matchBorder.Visibility = Visibility.Collapsed;
+        //private void sendMessageBtn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    matchBorder.Visibility = Visibility.Collapsed;
 
-            string currentId = _viewModel.CurrentJobReccomendation.Id;
+        //    string currentId = _viewModel.CurrentJobReccomendation.Id;
 
-            _viewModel.NextJobSuggestion();
-            //NavigationService.Navigate(new Uri("/ViewConversationPage.xaml?id=" + currentId, UriKind.Relative));
+        //    _viewModel.NextJobSuggestion();
+        //    //NavigationService.Navigate(new Uri("/ViewConversationPage.xaml?id=" + currentId, UriKind.Relative));
 
-        }
+        //}
 
         #region Swiping
 
@@ -123,11 +131,11 @@ namespace POCMigrationTinder4Jobs
 
         private void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            if (e.IsInertial)
-            {
-                this.OnFlick(sender, e);
-            }
-            else
+            //if (e.IsInertial)
+            //{
+            //    this.OnFlick(sender, e);
+            //}
+            //else
                 transform.TranslateX = 0;
         }
 
@@ -172,8 +180,6 @@ namespace POCMigrationTinder4Jobs
             return angle * 180 / Math.PI;
         }
 
-        #endregion
-
         private void Border_Tapped(object sender, TappedRoutedEventArgs e)
         {
             string x = "test";
@@ -181,18 +187,57 @@ namespace POCMigrationTinder4Jobs
 
         private void Border_ManipulationStarting(object sender, ManipulationStartingRoutedEventArgs e)
         {
-            string x = "test";
+            //double horizontalVelocity = e.Velocities.Linear.X;
+            //double verticalVelocity = e.Velocities.Linear.Y;
         }
 
         private void Border_ManipulationInertiaStarting(object sender, ManipulationInertiaStartingRoutedEventArgs e)
         {
-            string x = "test";
+            double horizontalVelocity = e.Velocities.Linear.X;
+            double verticalVelocity = e.Velocities.Linear.Y;
+
+            double angle = Math.Round(this.GetAngle(horizontalVelocity, verticalVelocity));
+
+            if (this.GetDirection(horizontalVelocity, verticalVelocity) == Windows.UI.Xaml.Controls.Orientation.Horizontal)
+            {
+                if (angle >= 180)
+                    _viewModel.RejectUser();
+                else
+                    _viewModel.LikeUser();
+
+                transform.TranslateX = 0;
+            }
         }
 
         private void Border_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
         {
-            string x = "test";
-        } 
+            //double horizontalVelocity = e.Velocities.Linear.X;
+            //double verticalVelocity = e.Velocities.Linear.Y;
+        }
 
+        #endregion
+
+
+        #region "Pass and Like buttons"
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+           // this.image.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //this.image1.Visibility = Windows.UI.Xaml.Visibility.Visible;
+        }
+
+        #endregion
+
+        private void JobList_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(PivotPage));
+        }
+
+       
     }
 }
