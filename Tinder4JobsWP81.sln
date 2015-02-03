@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tinder4JobsWP81", "Tinder4J
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tinder4Jobs.Library", "..\Tinder4Jobs.Library\Tinder4Jobs.Library.csproj", "{AF41DC90-23B2-4240-839D-5C338C2D8B0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrototypeTinder4Jobs", "..\PrototypeTinder4Jobs\PrototypeTinder4Jobs.csproj", "{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,24 @@ Global
 		{AF41DC90-23B2-4240-839D-5C338C2D8B0F}.Release|ARM.Build.0 = Release|ARM
 		{AF41DC90-23B2-4240-839D-5C338C2D8B0F}.Release|x86.ActiveCfg = Release|x86
 		{AF41DC90-23B2-4240-839D-5C338C2D8B0F}.Release|x86.Build.0 = Release|x86
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Debug|ARM.ActiveCfg = Debug|ARM
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Debug|ARM.Build.0 = Debug|ARM
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Debug|ARM.Deploy.0 = Debug|ARM
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Debug|x86.ActiveCfg = Debug|x86
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Debug|x86.Build.0 = Debug|x86
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Debug|x86.Deploy.0 = Debug|x86
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Release|ARM.ActiveCfg = Release|ARM
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Release|ARM.Build.0 = Release|ARM
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Release|ARM.Deploy.0 = Release|ARM
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Release|x86.ActiveCfg = Release|x86
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Release|x86.Build.0 = Release|x86
+		{868485B2-2D1D-4165-ADF5-E028EB9EBC1A}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
