@@ -268,7 +268,7 @@
             ManipulationStarting="Border_ManipulationStarting" 
             ManipulationInertiaStarting="Border_ManipulationInertiaStarting" 
             ManipulationStarted="Border_ManipulationStarted"
-            ManipulationMode="System">
+            ManipulationMode="All">
             <Border.RenderTransform>
                 <CompositeTransform x:Name="transform" TranslateX="0" />
             </Border.RenderTransform>
